@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { SITE_DATA } from '../data/content';
 
 export default function QuoteSection() {
   return (
@@ -15,10 +16,10 @@ export default function QuoteSection() {
         >
           <span className="text-6xl text-soft-gold font-serif block mb-8">"</span>
           <p className="font-serif text-3xl md:text-5xl leading-tight mb-8 text-ivory/90">
-            In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.
+            {SITE_DATA.quote.text}
           </p>
           <p className="font-sans text-sm tracking-[0.3em] text-soft-gold uppercase">
-            — Maya Angelou
+            — {SITE_DATA.quote.author}
           </p>
         </motion.div>
       </div>

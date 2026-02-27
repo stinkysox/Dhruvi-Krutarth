@@ -18,7 +18,7 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
   };
 
   return (
-    <div className="relative flex items-center justify-center w-80 h-80 select-none">
+    <div className="relative flex items-center justify-center w-64 h-64 select-none">
       {/* Load Dancing Script from Google Fonts */}
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Great+Vibes&display=swap');`}</style>
 
@@ -36,63 +36,45 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
           >
             <svg width="240" height="240" viewBox="0 0 200 200" overflow="visible">
               <defs>
-                {/* Emboss / wax depth filter */}
-                <filter id="waxFilter" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur" />
+                {/* Simplified flat wax filter */}
+                <filter id="waxFilter" x="-10%" y="-10%" width="120%" height="120%">
+                  <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
                   <feSpecularLighting
                     in="blur"
-                    surfaceScale="9"
-                    specularConstant="0.9"
-                    specularExponent="18"
+                    surfaceScale="2"
+                    specularConstant="0.5"
+                    specularExponent="10"
                     lightingColor="#ffffff"
                     result="light"
                   >
-                    <fePointLight x="-40" y="-120" z="180" />
+                    <fePointLight x="-20" y="-80" z="100" />
                   </feSpecularLighting>
                   <feComposite in="light" in2="SourceAlpha" operator="in" result="light" />
-                  <feComposite in="SourceGraphic" in2="light" operator="arithmetic" k1="0" k2="1" k3="0.9" k4="0" />
+                  <feComposite in="SourceGraphic" in2="light" operator="arithmetic" k1="0" k2="1" k3="0.3" k4="0" />
                 </filter>
 
-                {/* Outer wax gradient — cherry red */}
-                <radialGradient id="waxGrad" cx="38%" cy="32%" r="68%">
-                  <stop offset="0%"   stopColor="#f04060" />
-                  <stop offset="45%"  stopColor="#c0102a" />
-                  <stop offset="100%" stopColor="#6e000f" />
+                {/* Flat wax gradient */}
+                <radialGradient id="waxGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stopColor="#c0102a" />
+                  <stop offset="100%" stopColor="#9e000f" />
                 </radialGradient>
 
-                {/* Inner stamp recessed area */}
-                <radialGradient id="stampGrad" cx="42%" cy="38%" r="62%">
-                  <stop offset="0%"   stopColor="#b50e26" />
-                  <stop offset="100%" stopColor="#5c0009" />
-                </radialGradient>
-
-                {/* Drop shadow for the whole seal */}
-                <filter id="sealShadow" x="-15%" y="-15%" width="130%" height="130%">
-                  <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#7a0016" floodOpacity="0.55" />
+                {/* Subtle drop shadow for depth */}
+                <filter id="sealShadow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#000000" floodOpacity="0.3" />
                 </filter>
               </defs>
 
-              {/* Outer glow ring */}
-              <circle cx="100" cy="106" r="90" fill="rgba(192,16,42,0.12)" />
-
-              {/* Main wax blob */}
+              {/* Main flat wax blob */}
               <path
-                d="M100 20C125 18 145 5 165 25C185 45 198 80 190 115C182 150 195 180 165 190C135 200 105 185 75 190C45 195 10 180 5 140C0 100 15 70 35 40C55 10 75 22 100 20Z"
+                d="M100 25C125 23 145 10 165 30C185 50 195 80 190 115C185 150 195 180 165 190C135 200 105 185 75 190C45 195 10 180 10 140C10 100 20 70 40 45C60 20 75 27 100 25Z"
                 fill="url(#waxGrad)"
                 filter="url(#waxFilter)"
                 style={{ filter: 'url(#sealShadow)' }}
               />
 
-              {/* Recessed stamp circle */}
-              <circle cx="100" cy="100" r="62" fill="url(#stampGrad)" opacity="0.6" />
-
-              {/* Thin debossed ring */}
-              <circle cx="100" cy="100" r="63" fill="none" stroke="rgba(80,0,10,0.4)" strokeWidth="2" />
-              <circle cx="100" cy="100" r="56" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="0.8" />
-
-              {/* Shine streak — top left highlight */}
-              <ellipse cx="76" cy="65" rx="16" ry="7" fill="rgba(255,255,255,0.18)" transform="rotate(-35 76 65)" />
-              <ellipse cx="68" cy="60" rx="5" ry="2.5" fill="rgba(255,255,255,0.28)" transform="rotate(-35 68 60)" />
+              {/* Recessed stamp circle - simplified */}
+              <circle cx="100" cy="100" r="58" fill="#a00015" opacity="0.4" />
 
               {/* D — left initial */}
               <text
@@ -102,14 +84,15 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 style={{
                   fontFamily: "'Pinyon Script', 'Great Vibes', cursive",
                   fontSize: '72px',
-                  fill: '#fff5ee',
-                  filter: 'drop-shadow(0px 2px 5px rgba(60,0,10,0.9))',
+                  fill: '#ffffff',
+                  opacity: 0.9,
+                  filter: 'drop-shadow(0px 1px 2px rgba(0,0,0,0.5))',
                 }}
               >
                 D
               </text>
 
-              {/* Thin ampersand divider */}
+              {/* Ampersand */}
               <text
                 x="100"
                 y="108"
@@ -117,9 +100,8 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 style={{
                   fontFamily: "'Pinyon Script', cursive",
                   fontSize: '22px',
-                  fill: '#f5c8c0',
-                  opacity: 0.75,
-                  filter: 'drop-shadow(0px 1px 3px rgba(60,0,10,0.8))',
+                  fill: '#ffffff',
+                  opacity: 0.7,
                 }}
               >
                 &amp;
@@ -133,8 +115,9 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 style={{
                   fontFamily: "'Pinyon Script', 'Great Vibes', cursive",
                   fontSize: '72px',
-                  fill: '#fff5ee',
-                  filter: 'drop-shadow(0px 2px 5px rgba(60,0,10,0.9))',
+                  fill: '#ffffff',
+                  opacity: 0.9,
+                  filter: 'drop-shadow(0px 1px 2px rgba(0,0,0,0.5))',
                 }}
               >
                 K
@@ -153,7 +136,12 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
   );
 }
 
-function Balloon({ color }: { color: string }) {
+interface BalloonProps {
+  color: string;
+  key?: number;
+}
+
+function Balloon({ color }: BalloonProps) {
   const randomX = (Math.random() - 0.5) * 400;
   const randomDelay = Math.random() * 0.5;
   const randomDuration = 2 + Math.random() * 2;

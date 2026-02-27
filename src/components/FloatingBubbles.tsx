@@ -188,6 +188,8 @@ const ScrollIndicator: React.FC<{ progress: MotionValue<number> }> = ({
   );
 };
 
+import { SITE_DATA } from "../data/content";
+
 /* -----------------------------
    Main Component
 ------------------------------*/
@@ -200,48 +202,7 @@ export const BubbleScroll: React.FC = () => {
     offset: ["start end", "end start"], // smoother cinematic mapping
   });
 
-  const bubbles: BubbleConfig[] = [
-    {
-      url: "https://i.pinimg.com/736x/b5/23/b3/b523b3e8a7410b20dedbac7491a528af.jpg",
-      size: 500,
-      x: "15%",
-      y: "30%",
-      range: [0, 0.4],
-      drift: { x: 50, y: -80 },
-    },
-    {
-      url: "https://i.pinimg.com/736x/ba/63/52/ba63529729f2cc61dbac103f6f7bb238.jpg",
-      size: 350,
-      x: "70%",
-      y: "25%",
-      range: [0.1, 0.5],
-      drift: { x: -40, y: -60 },
-    },
-    {
-      url: "https://i.pinimg.com/736x/00/bd/a0/00bda06b701af0b5ee56538e55312a06.jpg",
-      size: 420,
-      x: "30%",
-      y: "60%",
-      range: [0.25, 0.65],
-      drift: { x: 60, y: -100 },
-    },
-    {
-      url: "https://i.pinimg.com/1200x/70/7c/74/707c741bd1aa9d0c154f81f2bc089bd8.jpg",
-      size: 280,
-      x: "80%",
-      y: "45%",
-      range: [0.35, 0.75],
-      drift: { x: -80, y: -70 },
-    },
-    {
-      url: "https://i.pinimg.com/1200x/b8/9c/5f/b89c5f5d181450d685871a21d76d60ae.jpg",
-      size: 480,
-      x: "10%",
-      y: "50%",
-      range: [0.5, 0.85],
-      drift: { x: 100, y: -90 },
-    },
-  ];
+  const bubbles = SITE_DATA.bubbles;
 
   return (
     <section

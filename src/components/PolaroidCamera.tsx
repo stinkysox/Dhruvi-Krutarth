@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Camera, Image as ImageIcon, Film } from 'lucide-react';
+import { SITE_DATA } from '../data/content';
 
 export default function PolaroidCamera() {
   const [hasTakenPhoto, setHasTakenPhoto] = useState(false);
@@ -84,34 +85,30 @@ export default function PolaroidCamera() {
               <div className="w-64 bg-white p-4 pb-12 shadow-xl rotate-1 transform transition-transform hover:rotate-0 duration-500">
                 <div className="w-full aspect-square bg-gray-900 mb-4 overflow-hidden relative group">
                   <img 
-                    src="https://picsum.photos/seed/couple/600/600" 
+                    src={SITE_DATA.polaroidCamera.photoUrl} 
                     alt="Couple" 
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 grayscale group-hover:grayscale-0"
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
                     referrerPolicy="no-referrer"
                   />
                 </div>
                 
                 <div className="flex flex-col gap-3 font-serif">
-                  <a 
-                    href="https://photos.ivoryfilms.in/dhruvi-krutarth-jan-2026/gallery/media" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 py-2 border border-gray-200 hover:bg-gray-50 transition-colors text-royal-blue text-sm uppercase tracking-widest"
-                  >
-                    <ImageIcon size={14} /> Photo Gallery
-                  </a>
-                  <a 
-                    href="https://drive.google.com/drive/folders/1JNxMb9xH2RBjqeS3zdIOg5jK7NIRxSIF?usp=sharing" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 py-2 border border-gray-200 hover:bg-gray-50 transition-colors text-royal-blue text-sm uppercase tracking-widest"
-                  >
-                    <Film size={14} /> Wedding Reels
-                  </a>
+                  {SITE_DATA.polaroidCamera.links.map((link, i) => (
+                    <a 
+                      key={i}
+                      href={link.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 py-2 border border-gray-200 hover:bg-gray-50 transition-colors text-royal-blue text-sm uppercase tracking-widest"
+                    >
+                      {link.label.toLowerCase().includes('gallery') ? <ImageIcon size={14} /> : <Film size={14} />} 
+                      {link.label}
+                    </a>
+                  ))}
                 </div>
                 
                 <div className="absolute bottom-2 right-4 font-handwriting text-gray-400 text-xs rotate-[-2deg]">
-                  Jan 2026
+                  {SITE_DATA.polaroidCamera.dateText}
                 </div>
               </div>
             </motion.div>
@@ -125,7 +122,7 @@ export default function PolaroidCamera() {
             transition={{ delay: 1 }}
             className="mt-8 font-serif text-gray-400 italic"
           >
-            Click the red button to capture the moment
+            Click on the shutter
           </motion.p>
         )}
       </div>
