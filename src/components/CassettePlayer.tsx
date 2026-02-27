@@ -1,5 +1,5 @@
 import { motion, useAnimation } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, Square, FastForward, Rewind, Volume2 } from 'lucide-react';
 
 export default function CassettePlayer() {
@@ -32,7 +32,7 @@ export default function CassettePlayer() {
   }, [isPlaying, leftReelControls, rightReelControls]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 sm:gap-12 w-full max-w-2xl mx-auto px-2 sm:px-4">
+    <div className="flex flex-col items-center justify-center gap-12 sm:gap-20 w-full max-w-xs mx-auto px-2 sm:px-4">
       {/* Sony Walkman WM-2 Style Body */}
       <div className="relative w-full bg-[#1a1a1a] rounded-xl shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.1)] border-t border-white/5 p-2 sm:p-4 flex flex-col overflow-hidden group">
         {/* Brushed Metal Texture Overlay */}
@@ -43,8 +43,7 @@ export default function CassettePlayer() {
           <div className="flex flex-col">
             <span className="font-sans font-black text-white/90 text-lg sm:text-2xl tracking-tighter italic leading-none">SONY</span>
             <div className="flex items-center gap-1 sm:gap-2 mt-0.5 sm:mt-1">
-              <span className="px-1 bg-blue-700 text-[7px] sm:text-[8px] text-white font-bold rounded-sm">WM-2</span>
-              <span className="font-sans text-[7px] sm:text-[9px] text-white/40 tracking-widest uppercase font-medium">WALKMAN</span>
+              <span className="font-sans text-[7px] sm:text-[9px] text-white/40 tracking-widest uppercase font-medium">CASSETTE PLAYER</span>
             </div>
           </div>
           <div className="flex flex-col items-end">
@@ -97,10 +96,10 @@ export default function CassettePlayer() {
               {/* Tape Label Area */}
               <div className="mt-1.5 sm:mt-2 mx-1.5 sm:mx-2 h-7 sm:h-10 bg-white/90 rounded-sm border-b border-gray-400 p-1 sm:p-2 flex justify-between items-center z-10">
                 <div className="flex flex-col">
-                  <span className="text-[8px] sm:text-[10px] font-serif font-bold text-blue-700 leading-none italic">D & K</span>
-                  <span className="text-[5px] sm:text-[6px] text-blue-700/60 uppercase font-black">Normal Bias</span>
+                  <span className="text-[8px] sm:text-[10px] font-serif font-bold text-royal-blue leading-none italic">D & K</span>
+                  <span className="text-[5px] sm:text-[6px] text-royal-blue/60 uppercase font-black">Normal Bias</span>
                 </div>
-                <span className="text-base sm:text-xl font-black text-blue-700/20">90</span>
+                <span className="text-base sm:text-xl font-black text-royal-blue/20">90</span>
               </div>
 
               {/* Visible Tape Spool */}
@@ -133,10 +132,6 @@ export default function CassettePlayer() {
             </div>
 
             <div className="mt-auto flex flex-col gap-1 sm:gap-2">
-              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center">
-                <Volume2 size={10} className="text-blue-400 sm:hidden" />
-                <Volume2 size={12} className="text-blue-400 hidden sm:block" />
-              </div>
               <span className="text-[6px] sm:text-[8px] text-white/60 font-medium leading-tight hidden sm:block">STEREO CASSETTE PLAYER</span>
             </div>
           </div>
@@ -171,10 +166,7 @@ export default function CassettePlayer() {
           <MechanicalButton icon={<FastForward size={14} className="sm:hidden" />} iconLg={<FastForward size={18} />} label="FF" />
         </div>
 
-        {/* Signature Branding */}
-        <div className="absolute bottom-1 sm:bottom-2 left-1/2 -translate-x-1/2 opacity-10">
-          <span className="text-[8px] sm:text-[10px] font-sans font-black tracking-[1em] uppercase whitespace-nowrap">High Fidelity</span>
-        </div>
+
       </div>
 
       {/* Text Section */}
@@ -184,7 +176,7 @@ export default function CassettePlayer() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-serif text-4xl sm:text-6xl md:text-8xl text-white tracking-tight leading-none"
+            className="font-serif text-5xl sm:text-8xl md:text-[14rem] text-white tracking-tighter leading-none"
             style={{ fontStyle: 'italic' }}
           >
             Dhruvi
@@ -194,7 +186,7 @@ export default function CassettePlayer() {
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-yellow-400 text-2xl sm:text-4xl md:text-5xl font-light select-none"
+            className="text-yellow-400 text-3xl sm:text-6xl md:text-8xl font-light select-none"
           >
             ×
           </motion.span>
@@ -203,7 +195,7 @@ export default function CassettePlayer() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-serif text-4xl sm:text-6xl md:text-8xl text-white tracking-tight leading-none"
+            className="font-serif text-5xl sm:text-8xl md:text-[14rem] text-white tracking-tighter leading-none"
             style={{ fontStyle: 'italic' }}
           >
             Krutarth
@@ -223,7 +215,15 @@ export default function CassettePlayer() {
   );
 }
 
-function MechanicalButton({ icon, iconLg, label, onClick, active, isPrimary, color }) {
+function MechanicalButton({ icon, iconLg, label, onClick, active, isPrimary, color }: {
+  icon: React.ReactNode;
+  iconLg: React.ReactNode;
+  label: string;
+  onClick?: () => void;
+  active?: boolean;
+  isPrimary?: boolean;
+  color?: 'play' | 'stop';
+}) {
   const baseClasses = `relative transition-all duration-150 active:scale-95 flex items-center justify-center border-t border-white/10`;
 
   const sizeClasses = isPrimary
@@ -233,8 +233,8 @@ function MechanicalButton({ icon, iconLg, label, onClick, active, isPrimary, col
   let colorClasses = '';
   if (isPrimary && color === 'play') {
     colorClasses = active
-      ? 'bg-orange-600 text-black shadow-none translate-y-0.5'
-      : 'bg-gradient-to-b from-[#ff8c00] to-[#e67e22] text-black shadow-[0_3px_0_#d35400,0_6px_12px_rgba(0,0,0,0.5)]';
+      ? 'bg-royal-blue text-white shadow-none translate-y-0.5'
+      : 'bg-gradient-to-b from-[#003399] to-[#002366] text-white shadow-[0_3px_0_#001a4d,0_6px_12px_rgba(0,0,0,0.5)]';
   } else if (isPrimary && color === 'stop') {
     colorClasses = !active
       ? 'bg-gradient-to-b from-[#555] to-[#333] text-white/80 shadow-[0_3px_0_#111,0_6px_12px_rgba(0,0,0,0.5)]'

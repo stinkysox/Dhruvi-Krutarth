@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import WaxSeal from './components/WaxSeal';
 import CassettePlayer from './components/CassettePlayer';
 import { BubbleScroll } from './components/FloatingBubbles';
 import PolaroidCamera from './components/PolaroidCamera';
 import QuoteSection from './components/QuoteSection';
-import ScatteredPolaroid from './components/ScatteredPolaroid';
 import { SITE_DATA } from './data/content';
 
 export default function App() {
@@ -14,7 +13,7 @@ export default function App() {
 
   const handleEnter = () => {
     setHasEntered(true);
-    setTimeout(() => setShowContent(true), 800);
+    setTimeout(() => setShowContent(true), 50);
   };
 
   return (
@@ -27,19 +26,18 @@ export default function App() {
           <motion.div
             key="entry"
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-ivory overflow-hidden"
-            exit={{ opacity: 0, transition: { duration: 1, ease: "easeInOut" } }}
+            exit={{ opacity: 0, scale: 1.1, transition: { duration: 0.4, ease: "easeOut" } }}
           >
-            {/* Title — z-30 so it always sits above polaroids */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="text-center mb-4 space-y-4 relative z-30"
+              className="text-center mb-12 space-y-4 relative z-30 px-8 py-4"
             >
-              <h1 className="font-serif text-5xl md:text-7xl text-royal-blue tracking-tight drop-shadow-md">
+              <h1 className="font-serif text-5xl md:text-7xl text-royal-blue tracking-tight drop-shadow-sm">
                 {SITE_DATA.coupleName}
               </h1>
-              <p className="font-sans text-sm uppercase tracking-[0.3em] text-soft-gold drop-shadow-sm">
+              <p className="font-sans text-sm uppercase tracking-[0.3em] text-soft-gold">
                 {SITE_DATA.weddingMonth}
               </p>
             </motion.div>
@@ -62,15 +60,7 @@ export default function App() {
               Tap the seal to open
             </motion.p>
 
-            {/* Polaroids from SITE_DATA */}
-            {SITE_DATA.scatteredPolaroids.map((p, i) => (
-              <ScatteredPolaroid
-                key={i}
-                src={p.src}
-                className={p.className}
-                delay={p.delay}
-              />
-            ))}
+
           </motion.div>
         ) : (
           <motion.div
@@ -80,6 +70,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
           >
+            {/* Background transition layer */}
             <motion.div
               className="fixed inset-0 bg-royal-blue z-0 pointer-events-none"
               initial={{ scaleY: 0, originY: 1 }}
@@ -89,7 +80,7 @@ export default function App() {
 
             {showContent && (
               <div className="relative z-10 w-full">
-                <section className="min-h-screen flex items-center justify-center bg-royal-blue relative overflow-hidden">
+                <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
                   <div className="relative z-10 w-full">
                     <CassettePlayer />
                   </div>

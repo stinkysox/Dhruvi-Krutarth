@@ -21,7 +21,7 @@ export default function PolaroidCamera() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory flex flex-col items-center justify-center relative overflow-hidden py-20">
+    <div className="min-h-screen bg-gradient-to-b from-ivory to-royal-blue/10 flex flex-col items-center justify-center relative overflow-hidden py-20">
       {/* Flash Overlay */}
       <AnimatePresence>
         {isFlashing && (
@@ -54,20 +54,13 @@ export default function PolaroidCamera() {
 
           {/* Shutter Button */}
           <motion.button
-            className="absolute -top-3 right-16 w-12 h-6 bg-red-500 rounded-t-lg shadow-md border-b border-red-700 active:translate-y-1 transition-transform cursor-pointer z-50 hover:bg-red-600"
+            className="absolute -top-3 right-16 w-12 h-6 bg-royal-blue rounded-t-lg shadow-md border-b border-royal-blue/70 active:translate-y-1 transition-transform cursor-pointer z-50 hover:bg-royal-blue/90"
             onClick={takePhoto}
             disabled={hasTakenPhoto}
             whileTap={{ scale: 0.95 }}
           />
           
-          {/* Rainbow Stripe */}
-          <div className="absolute bottom-8 w-full h-4 flex justify-center gap-1 opacity-80">
-            <div className="w-8 h-full bg-red-500" />
-            <div className="w-8 h-full bg-orange-500" />
-            <div className="w-8 h-full bg-yellow-500" />
-            <div className="w-8 h-full bg-green-500" />
-            <div className="w-8 h-full bg-blue-500" />
-          </div>
+
           
           {/* Slot */}
           <div className="absolute bottom-0 w-48 h-2 bg-black rounded-full" />
