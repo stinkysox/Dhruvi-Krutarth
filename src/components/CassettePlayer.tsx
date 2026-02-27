@@ -1,6 +1,6 @@
 import { motion, useAnimation } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
-import { Play, Square, FastForward, Rewind, Volume2 } from 'lucide-react';
+import { Play, Square, FastForward, Rewind } from 'lucide-react';
 
 export default function CassettePlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -29,174 +29,152 @@ export default function CassettePlayer() {
       leftReelControls.stop();
       rightReelControls.stop();
     }
-  }, [isPlaying, leftReelControls, rightReelControls]);
+  }, [isPlaying]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-12 sm:gap-20 w-full max-w-xs mx-auto px-2 sm:px-4">
-      {/* Sony Walkman WM-2 Style Body */}
-      <div className="relative w-full bg-[#1a1a1a] rounded-xl shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.1)] border-t border-white/5 p-2 sm:p-4 flex flex-col overflow-hidden group">
-        {/* Brushed Metal Texture Overlay */}
+    <div
+      className="
+      flex flex-col items-center justify-center
+      gap-12 sm:gap-16 md:gap-20
+      w-full
+      max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-sm xl:max-w-md
+      mx-auto
+      px-4 sm:px-6 md:px-8 lg:px-4
+    "
+    >
+      {/* Cassette Body */}
+      <div
+        className="
+        relative w-full
+        bg-[#1a1a1a]
+        rounded-xl
+        shadow-[0_30px_60px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.1)]
+        border-t border-white/5
+        p-3 sm:p-4 md:p-6 lg:p-4
+        flex flex-col overflow-hidden
+      "
+      >
+        {/* Texture */}
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/brushed-alum.png')] opacity-20 pointer-events-none mix-blend-overlay" />
 
-        {/* Top Trim / Branding */}
-        <div className="w-full flex justify-between items-start mb-2 sm:mb-4 relative z-10 px-1 sm:px-2">
-          <div className="flex flex-col">
-            <span className="font-sans font-black text-white/90 text-lg sm:text-2xl tracking-tighter italic leading-none">SONY</span>
-            <div className="flex items-center gap-1 sm:gap-2 mt-0.5 sm:mt-1">
-              <span className="font-sans text-[7px] sm:text-[9px] text-white/40 tracking-widest uppercase font-medium">CASSETTE PLAYER</span>
+        {/* Header */}
+        <div className="flex justify-between items-start mb-4 relative z-10">
+          <div>
+            <span className="font-black text-white text-lg sm:text-xl md:text-2xl lg:text-lg tracking-tight italic">
+              SONY
+            </span>
+            <div className="text-[8px] sm:text-[9px] text-white/40 tracking-widest uppercase">
+              Cassette Player
             </div>
           </div>
+
           <div className="flex flex-col items-end">
             <div className="flex gap-1 mb-1">
-              <div className={`w-1.5 h-1.5 rounded-full ${isPlaying ? 'bg-red-500 shadow-[0_0_5px_rgba(220,38,38,1)] animate-pulse' : 'bg-red-900'}`} />
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500/30" />
+              <div
+                className={`w-2 h-2 rounded-full ${
+                  isPlaying ? 'bg-red-500 animate-pulse' : 'bg-red-900'
+                }`}
+              />
+              <div className="w-2 h-2 rounded-full bg-green-500/30" />
             </div>
-            <span className="text-[7px] sm:text-[8px] text-white/30 uppercase font-bold tracking-tighter">BATT/OPR</span>
+            <span className="text-[8px] text-white/30 uppercase">Batt/OPR</span>
           </div>
         </div>
 
-        <div className="flex flex-1 gap-2 sm:gap-6 relative z-10">
-          {/* Cassette Door / Window */}
-          <div className="flex-[3] bg-[#0c0c0c] rounded-lg border border-white/5 shadow-inner relative overflow-hidden p-2 sm:p-3 flex items-center justify-center min-h-[120px] sm:min-h-0">
-            {/* Glass Glare */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none z-30" />
-            <div className="absolute top-4 right-4 w-12 h-px bg-white/5 rotate-45" />
-
-            {/* Tape Inside */}
-            <div className="w-full aspect-[1.58] bg-[#222] rounded-sm relative flex flex-col overflow-hidden shadow-2xl border border-black/50">
-              {/* Tape Hubs */}
-              <div className="absolute inset-0 flex items-center justify-center gap-8 sm:gap-16 z-20">
-                {/* Left Hub */}
+        {/* Window + Side */}
+        <div className="flex flex-1 gap-4 relative z-10">
+          {/* Window */}
+          <div
+            className="
+            flex-[3]
+            min-h-[180px] sm:min-h-[220px] md:min-h-[280px] lg:min-h-[160px]
+            bg-[#0c0c0c]
+            rounded-lg
+            border border-white/5
+            shadow-inner
+            relative overflow-hidden
+            p-4
+            flex items-center justify-center
+          "
+          >
+            <div className="w-full aspect-[1.6] bg-[#222] rounded-sm relative flex items-center justify-center">
+              <div className="flex gap-10 sm:gap-14 md:gap-20 lg:gap-10">
                 <motion.div
-                  className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-[#111] border-2 border-white/5 flex items-center justify-center relative"
                   animate={leftReelControls}
+                  className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-9 lg:h-9 rounded-full bg-[#111] border-2 border-white/10 flex items-center justify-center"
                 >
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 border-white/20 flex items-center justify-center">
-                    <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-white/40 rounded-full" />
-                  </div>
-                  {[0, 60, 120, 180, 240, 300].map((deg) => (
-                    <div key={deg} className="absolute w-0.5 sm:w-1 h-1.5 sm:h-2 bg-white/10" style={{ transform: `rotate(${deg}deg) translateY(-10px)` }} />
-                  ))}
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border border-white/30" />
                 </motion.div>
 
-                {/* Right Hub */}
                 <motion.div
-                  className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-[#111] border-2 border-white/5 flex items-center justify-center relative"
                   animate={rightReelControls}
+                  className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-9 lg:h-9 rounded-full bg-[#111] border-2 border-white/10 flex items-center justify-center"
                 >
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 border-white/20 flex items-center justify-center">
-                    <div className="w-0.5 h-0.5 sm:w-1 sm:h-1 bg-white/40 rounded-full" />
-                  </div>
-                  {[0, 60, 120, 180, 240, 300].map((deg) => (
-                    <div key={deg} className="absolute w-0.5 sm:w-1 h-1.5 sm:h-2 bg-white/10" style={{ transform: `rotate(${deg}deg) translateY(-10px)` }} />
-                  ))}
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border border-white/30" />
                 </motion.div>
-              </div>
-
-              {/* Tape Label Area */}
-              <div className="mt-1.5 sm:mt-2 mx-1.5 sm:mx-2 h-7 sm:h-10 bg-white/90 rounded-sm border-b border-gray-400 p-1 sm:p-2 flex justify-between items-center z-10">
-                <div className="flex flex-col">
-                  <span className="text-[8px] sm:text-[10px] font-serif font-bold text-royal-blue leading-none italic">D & K</span>
-                  <span className="text-[5px] sm:text-[6px] text-royal-blue/60 uppercase font-black">Normal Bias</span>
-                </div>
-                <span className="text-base sm:text-xl font-black text-royal-blue/20">90</span>
-              </div>
-
-              {/* Visible Tape Spool */}
-              <div className="flex-1 bg-black flex items-center justify-center relative">
-                <div className="absolute w-4/5 h-2 bg-[#1a1a1a] rounded-full opacity-50" />
-                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className={`w-1 h-1 rounded-full transition-colors duration-500 ${isPlaying ? 'bg-orange-500' : 'bg-white/5'}`} />
-                  ))}
-                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Side Control Panel */}
-          <div className="flex-1 flex flex-col gap-2 sm:gap-4 py-1 sm:py-2 border-l border-white/5 pl-2 sm:pl-6">
-            <div className="flex flex-col gap-1">
-              <span className="text-[6px] sm:text-[7px] text-white/40 font-bold uppercase tracking-widest">Vol</span>
-              <div className="h-16 sm:h-24 w-4 sm:w-6 bg-black rounded-full p-1 relative shadow-inner border border-white/5 mx-auto">
-                <motion.div
-                  className="absolute bottom-1 left-1 right-1 bg-yellow-500 rounded-full transition-all"
-                  style={{ height: '70%' }}
-                />
-                <div className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none flex flex-col justify-between items-center py-2">
-                  {[...Array(6)].map((_, i) => (
-                    <div key={i} className="w-1.5 sm:w-2 h-[1px] bg-white/20" />
-                  ))}
-                </div>
+          {/* Side Panel */}
+          <div className="flex-1 flex flex-col justify-between border-l border-white/10 pl-4">
+            <div>
+              <span className="text-[8px] text-white/40 uppercase">Vol</span>
+              <div className="h-20 sm:h-24 md:h-28 lg:h-16 w-4 bg-black rounded-full mt-2 relative">
+                <div className="absolute bottom-1 left-1 right-1 bg-yellow-500 rounded-full h-[70%]" />
               </div>
             </div>
-
-            <div className="mt-auto flex flex-col gap-1 sm:gap-2">
-              <span className="text-[6px] sm:text-[8px] text-white/60 font-medium leading-tight hidden sm:block">STEREO CASSETTE PLAYER</span>
-            </div>
+            <span className="text-[9px] text-white/50 hidden sm:block">
+              Stereo Cassette Player
+            </span>
           </div>
         </div>
 
-        {/* Mechanical Buttons — now with separate Play & Stop */}
-        <div className="flex justify-center items-end gap-2 sm:gap-4 mt-3 sm:mt-6 mb-1 sm:mb-2 relative z-20 flex-wrap">
-          <MechanicalButton icon={<Rewind size={14} className="sm:hidden" />} iconLg={<Rewind size={18} />} label="REW" />
+        {/* Buttons */}
+        <div className="flex justify-center items-end gap-3 sm:gap-4 mt-6 lg:mt-4 flex-wrap sm:flex-nowrap">
+          <MechanicalButton icon={<Rewind size={16} />} label="REW" />
 
-          {/* PLAY */}
           <MechanicalButton
-            icon={<Play size={16} fill="currentColor" className="sm:hidden" />}
-            iconLg={<Play size={20} fill="currentColor" />}
+            icon={<Play size={18} fill="currentColor" />}
             label="PLAY"
             onClick={handlePlay}
             active={isPlaying}
-            isPrimary
-            color="play"
+            variant="play"
           />
 
-          {/* STOP */}
           <MechanicalButton
-            icon={<Square size={14} fill="currentColor" className="sm:hidden" />}
-            iconLg={<Square size={18} fill="currentColor" />}
+            icon={<Square size={16} fill="currentColor" />}
             label="STOP"
             onClick={handleStop}
             active={!isPlaying}
-            isPrimary
-            color="stop"
+            variant="stop"
           />
 
-          <MechanicalButton icon={<FastForward size={14} className="sm:hidden" />} iconLg={<FastForward size={18} />} label="FF" />
+          <MechanicalButton icon={<FastForward size={16} />} label="FF" />
         </div>
-
-
       </div>
 
-      {/* Text Section */}
-      <div className="text-center space-y-1 sm:space-y-2 px-4">
-        <div className="flex items-center justify-center gap-3 sm:gap-5">
+      {/* Names */}
+      <div className="text-center space-y-4">
+        <div className="flex items-center justify-center gap-4 flex-wrap">
           <motion.h2
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-serif text-5xl sm:text-8xl md:text-[14rem] text-white tracking-tighter leading-none"
-            style={{ fontStyle: 'italic' }}
+            transition={{ duration: 0.8 }}
+            className="font-serif italic text-white tracking-tight text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-6xl"
           >
             Dhruvi
           </motion.h2>
 
-          <motion.span
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-yellow-400 text-3xl sm:text-6xl md:text-8xl font-light select-none"
-          >
+          <span className="text-yellow-400 text-3xl sm:text-5xl md:text-6xl lg:text-4xl xl:text-5xl">
             ×
-          </motion.span>
+          </span>
 
           <motion.h2
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-serif text-5xl sm:text-8xl md:text-[14rem] text-white tracking-tighter leading-none"
-            style={{ fontStyle: 'italic' }}
+            transition={{ duration: 0.8 }}
+            className="font-serif italic text-white tracking-tight text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-6xl"
           >
             Krutarth
           </motion.h2>
@@ -205,8 +183,8 @@ export default function CassettePlayer() {
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="font-sans text-[10px] sm:text-sm text-yellow-500/60 uppercase tracking-[0.25em] sm:tracking-[0.4em] font-light"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-[10px] sm:text-sm text-yellow-500/60 uppercase tracking-[0.3em]"
         >
           Recording 001 • Forever & Always
         </motion.p>
@@ -215,42 +193,45 @@ export default function CassettePlayer() {
   );
 }
 
-function MechanicalButton({ icon, iconLg, label, onClick, active, isPrimary, color }: {
+function MechanicalButton({
+  icon,
+  label,
+  onClick,
+  active,
+  variant,
+}: {
   icon: React.ReactNode;
-  iconLg: React.ReactNode;
   label: string;
   onClick?: () => void;
   active?: boolean;
-  isPrimary?: boolean;
-  color?: 'play' | 'stop';
+  variant?: 'play' | 'stop';
 }) {
-  const baseClasses = `relative transition-all duration-150 active:scale-95 flex items-center justify-center border-t border-white/10`;
+  const isPrimary = variant === 'play' || variant === 'stop';
 
-  const sizeClasses = isPrimary
-    ? 'w-11 h-8 sm:w-16 sm:h-10 rounded-sm'
-    : 'w-9 h-7 sm:w-12 sm:h-8 rounded-sm';
+  const activeStyle =
+    variant === 'play'
+      ? 'bg-yellow-500/90 text-black shadow-[0_0_10px_rgba(234,179,8,0.4)] translate-y-0.5'
+      : variant === 'stop'
+      ? 'bg-[#2a2a2a] text-white/70 shadow-none translate-y-0.5 border border-white/10'
+      : '';
 
-  let colorClasses = '';
-  if (isPrimary && color === 'play') {
-    colorClasses = active
-      ? 'bg-royal-blue text-white shadow-none translate-y-0.5'
-      : 'bg-gradient-to-b from-[#003399] to-[#002366] text-white shadow-[0_3px_0_#001a4d,0_6px_12px_rgba(0,0,0,0.5)]';
-  } else if (isPrimary && color === 'stop') {
-    colorClasses = !active
-      ? 'bg-gradient-to-b from-[#555] to-[#333] text-white/80 shadow-[0_3px_0_#111,0_6px_12px_rgba(0,0,0,0.5)]'
-      : 'bg-gradient-to-b from-[#cc2200] to-[#991a00] text-white shadow-[0_3px_0_#660f00,0_6px_12px_rgba(0,0,0,0.5)]';
-  } else {
-    colorClasses = 'bg-gradient-to-b from-[#333] to-[#111] text-white/70 shadow-[0_3px_0_#000,0_6px_10px_rgba(0,0,0,0.4)] active:shadow-none active:translate-y-0.5';
-  }
+  const inactiveStyle =
+    'bg-gradient-to-b from-[#3a3a3a] to-[#1f1f1f] text-white/50 shadow-[0_4px_6px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)]';
 
   return (
-    <div className="flex flex-col items-center gap-1 sm:gap-2 group/btn">
-      <button onClick={onClick} className={`${baseClasses} ${sizeClasses} ${colorClasses}`}>
-        <span className="sm:hidden">{icon}</span>
-        <span className="hidden sm:inline">{iconLg}</span>
-        <div className="absolute inset-x-1 top-0 h-px bg-white/10 opacity-50" />
+    <div className="flex flex-col items-center gap-1.5">
+      <button
+        onClick={onClick}
+        className={`
+          transition-all duration-150 active:scale-95
+          ${isPrimary ? 'w-14 h-9' : 'w-12 h-8'}
+          rounded-sm flex items-center justify-center
+          ${active ? activeStyle : inactiveStyle}
+        `}
+      >
+        {icon}
       </button>
-      <span className="text-[6px] sm:text-[8px] font-sans font-black text-white/30 tracking-widest group-hover/btn:text-white/50 transition-colors uppercase">
+      <span className="text-[8px] text-white/30 uppercase tracking-widest">
         {label}
       </span>
     </div>

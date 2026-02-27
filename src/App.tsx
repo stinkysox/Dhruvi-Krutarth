@@ -18,8 +18,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-ivory selection:bg-soft-gold selection:text-royal-blue">
-      {/* Grain Overlay */}
-      <div className="grain-overlay" />
+
 
       <AnimatePresence mode="wait">
         {!hasEntered ? (
