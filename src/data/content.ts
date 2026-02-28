@@ -92,11 +92,11 @@ polaroidCamera: {
   links: [
     {
       label: "Photo Gallery",
-      url: "YOUR_GALLERY_LINK"
+      url: "https://photos.ivoryfilms.in/dhruvi-krutarth-jan-2026/gallery/media"
     },
     {
-      label: "Wedding Reels",
-      url: "YOUR_REELS_LINK"
+      label: "Reels",
+      url: "https://drive.google.com/drive/folders/1JNxMb9xH2RBjqeS3zdIOg5jK7NIRxSIF?usp=sharing"
     },
     {
       label: "Wedding Film",
