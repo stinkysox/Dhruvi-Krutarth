@@ -46,15 +46,16 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                   <stop offset="100%" stopColor={ROYAL_BLUE_DARK} />
                 </radialGradient>
 
-                {/* Safari-safe combined filter */}
+                {/* Safari-safe combined filter (v2) */}
                 <filter
                   id="waxFilter"
-                  x="-30%"
-                  y="-30%"
-                  width="160%"
-                  height="160%"
-                  filterUnits="objectBoundingBox"
+                  x="-50"
+                  y="-50"
+                  width="300"
+                  height="300"
+                  filterUnits="userSpaceOnUse"
                   colorInterpolationFilters="sRGB"
+                  filterRes="256"
                 >
                   <feGaussianBlur
                     in="SourceAlpha"
@@ -69,7 +70,7 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                     lightingColor="#ffffff"
                     result="light"
                   >
-                    <fePointLight x="-50" y="-75" z="150" />
+                    <fePointLight x="40" y="40" z="100" />
                   </feSpecularLighting>
                   <feComposite
                     in="light"
