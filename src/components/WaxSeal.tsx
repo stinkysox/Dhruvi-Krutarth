@@ -49,25 +49,27 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 {/* Safari-safe combined filter */}
                 <filter
                   id="waxFilter"
-                  x="-20%"
-                  y="-20%"
-                  width="140%"
-                  height="140%"
+                  x="-30%"
+                  y="-30%"
+                  width="160%"
+                  height="160%"
+                  filterUnits="objectBoundingBox"
+                  colorInterpolationFilters="sRGB"
                 >
                   <feGaussianBlur
                     in="SourceAlpha"
-                    stdDeviation="1.2"
+                    stdDeviation="2"
                     result="blur"
                   />
                   <feSpecularLighting
                     in="blur"
-                    surfaceScale="1.2"
-                    specularConstant="0.25"
-                    specularExponent="12"
+                    surfaceScale="5"
+                    specularConstant="0.75"
+                    specularExponent="20"
                     lightingColor="#ffffff"
                     result="light"
                   >
-                    <fePointLight x="-40" y="-60" z="120" />
+                    <fePointLight x="-50" y="-75" z="150" />
                   </feSpecularLighting>
                   <feComposite
                     in="light"
@@ -80,14 +82,18 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                     in2="light"
                     operator="arithmetic"
                     k2="1"
-                    k3="0.25"
+                    k3="0.4"
                   />
-                  <feDropShadow
-                    dx="0"
-                    dy="3"
-                    stdDeviation="4"
-                    floodOpacity="0.25"
-                  />
+                  {/* Robust Drop Shadow replacement for Safari */}
+                  <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="shadowBlur" />
+                  <feOffset in="shadowBlur" dx="0" dy="4" result="offsetShadow" />
+                  <feComponentTransfer in="offsetShadow" result="shadowAlpha">
+                    <feFuncA type="linear" slope="0.3" />
+                  </feComponentTransfer>
+                  <feMerge>
+                    <feMergeNode in="shadowAlpha" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
                 </filter>
               </defs>
 
