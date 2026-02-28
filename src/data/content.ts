@@ -38,14 +38,13 @@ export const SITE_DATA = {
 
   // Quote Section
   quote: {
-    text: "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.",
-    author: "Maya Angelou"
+text: "Every love story is beautiful, but ours is my favorite.",
   },
 
   // Bubble Archive Section
  bubbles: [
   {
-    url: "https://i.postimg.cc/SN5CMznj/D-K-Desert-Party-25.jpg",
+    url: "https://i.postimg.cc/k4k4MJkd/Whats-App-Image-2026-02-28-at-11-17-55-AM.jpg",
     size: 480,
     x: "15%",
     y: "30%",
@@ -53,7 +52,7 @@ export const SITE_DATA = {
     drift: { x: 40, y: -60 },
   },
   {
-    url: "https://i.postimg.cc/283nyx8t/D-K-Highlights-Surat-143.jpg",
+    url: "https://i.postimg.cc/PxLJkpFf/Whats-App-Image-2026-02-28-at-11-17-55-AM-(1).jpg",
     size: 360,
     x: "70%",
     y: "25%",
@@ -61,7 +60,7 @@ export const SITE_DATA = {
     drift: { x: -35, y: -50 },
   },
   {
-    url: "https://i.postimg.cc/8P3M6r7G/D-K-Pool-Party-30.jpg",
+    url: "https://i.postimg.cc/tTLTRqLb/Whats-App-Image-2026-02-28-at-11-17-56-AM.jpg",
     size: 420,
     x: "30%",
     y: "60%",
@@ -69,7 +68,7 @@ export const SITE_DATA = {
     drift: { x: 50, y: -70 },
   },
   {
-    url: "https://i.postimg.cc/28JhZB1y/D-K-Sangeet-After-Party-76.jpg",
+    url: "https://i.postimg.cc/gJfJczfd/Whats-App-Image-2026-02-28-at-11-17-57-AM.jpg",
     size: 300,
     x: "80%",
     y: "45%",
@@ -77,7 +76,7 @@ export const SITE_DATA = {
     drift: { x: -60, y: -60 },
   },
   {
-    url: "https://i.postimg.cc/3JW2NZxr/D-K-Wedding-After-Party-156.jpg",
+    url: "https://i.postimg.cc/fL6LWz6N/Whats-App-Image-2026-02-28-at-11-17-57-AM-(1).jpg",
     size: 460,
     x: "10%",
     y: "55%",
@@ -87,15 +86,28 @@ export const SITE_DATA = {
 ],
 
   // Polaroid Camera Section
-  polaroidCamera: {
-    photoUrl: "https://i.postimg.cc/kMtZkWWf/D-K-Highlights-Surat-18.jpg",
-    dateText: "Jan 2026",
-    links: [
-      { label: "Photo Gallery", url: "https://photos.ivoryfilms.in/dhruvi-krutarth-jan-2026/gallery/media" },
-      { label: "Wedding Reels", url: "https://drive.google.com/drive/folders/1JNxMb9xH2RBjqeS3zdIOg5jK7NIRxSIF?usp=sharing" },
-    ]
-  },
-
+polaroidCamera: {
+  photoUrl: "https://i.postimg.cc/kMtZkWWf/D-K-Highlights-Surat-18.jpg",
+  dateText: "Jan 2026",
+  links: [
+    {
+      label: "Photo Gallery",
+      url: "YOUR_GALLERY_LINK"
+    },
+    {
+      label: "Wedding Reels",
+      url: "YOUR_REELS_LINK"
+    },
+    {
+      label: "Wedding Film",
+      url: "https://app.streamefy.com/view/KoB731jIxt"
+    },
+    {
+      label: "Performances",
+      url: "https://app.streamefy.com/view/KoB731jIxt"
+    }
+  ]
+},
   // Footer
   footer: {
     initials: "D & K",

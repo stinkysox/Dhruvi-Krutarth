@@ -1,10 +1,11 @@
 import { motion, useAnimation } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Play, Square, FastForward, Rewind } from 'lucide-react';
 
 export default function CassettePlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const leftReelControls = useAnimation();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const rightReelControls = useAnimation();
 
   const handlePlay = () => {
@@ -16,16 +17,40 @@ export default function CassettePlayer() {
   };
 
   useEffect(() => {
+    const audio = new Audio("/wedding.mp3");
+    audio.loop = true;
+
+    audioRef.current = audio;
+
+    return () => {
+      audio.pause();
+      // ✅ No currentTime reset here — preserves position on unmount cleanup
+    };
+  }, []);
+
+  useEffect(() => {
     if (isPlaying) {
+      // 🎵 Resume audio from wherever it left off
+      audioRef.current?.play().catch(() => {});
+
+      // 🎞 Spin reels
       leftReelControls.start({
         rotate: 360,
         transition: { repeat: Infinity, duration: 2.5, ease: 'linear' },
       });
+
       rightReelControls.start({
         rotate: 360,
         transition: { repeat: Infinity, duration: 2.5, ease: 'linear' },
       });
     } else {
+      // ⏸ Pause audio — DO NOT reset currentTime
+      if (audioRef.current) {
+        audioRef.current.pause();
+        // ❌ Removed: audioRef.current.currentTime = 0;
+      }
+
+      // ⛔ Stop reels
       leftReelControls.stop();
       rightReelControls.stop();
     }
