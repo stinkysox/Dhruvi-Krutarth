@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useId } from "react";
 
 interface WaxSealProps {
   onClick: () => void;
@@ -10,6 +10,8 @@ const ROYAL_BLUE_DARK = "#001a4d";
 
 export default function WaxSeal({ onClick }: WaxSealProps) {
   const [isBroken, setIsBroken] = useState(false);
+  const filterId = useId().replace(/:/g, "");
+  const gradId = useId().replace(/:/g, "");
 
   const handleBreak = () => {
     if (!isBroken) {
@@ -25,13 +27,17 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
           <motion.div
             key="seal"
             className="relative cursor-pointer z-50"
-            initial={{ scale: 0, rotate: -8 }}
-            animate={{ scale: 1, rotate: 0 }}
+            initial={{ scale: 0, rotate: -8, opacity: 0 }}
+            animate={{ scale: 1, rotate: 0, opacity: 1 }}
             exit={{ opacity: 0, scale: 0.6, transition: { duration: 0.3 } }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.94 }}
             transition={{ duration: 0.6, ease: [0.6, 0.01, 0.05, 0.95] }}
             onClick={handleBreak}
+            style={{
+              filter: "drop-shadow(0px 4px 12px rgba(0,0,0,0.3))",
+              willChange: "transform, filter",
+            }}
           >
             <svg
               width="240"
@@ -40,15 +46,15 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
               overflow="visible"
             >
               <defs>
-                {/* Royal Blue gradient */}
-                <radialGradient id="waxGrad" cx="50%" cy="45%" r="60%">
+                {/* Royal Blue gradient with dynamic ID to prevent Safari cache bugs */}
+                <radialGradient id={gradId} cx="50%" cy="45%" r="60%">
                   <stop offset="0%" stopColor={ROYAL_BLUE} />
                   <stop offset="100%" stopColor={ROYAL_BLUE_DARK} />
                 </radialGradient>
 
-                {/* Safari-safe combined filter (v2) */}
+                {/* Permanent Safari-safe filter (v3) */}
                 <filter
-                  id="waxFilter"
+                  id={filterId}
                   x="-50"
                   y="-50"
                   width="300"
@@ -85,24 +91,14 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                     k2="1"
                     k3="0.4"
                   />
-                  {/* Robust Drop Shadow replacement for Safari */}
-                  <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="shadowBlur" />
-                  <feOffset in="shadowBlur" dx="0" dy="4" result="offsetShadow" />
-                  <feComponentTransfer in="offsetShadow" result="shadowAlpha">
-                    <feFuncA type="linear" slope="0.3" />
-                  </feComponentTransfer>
-                  <feMerge>
-                    <feMergeNode in="shadowAlpha" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
                 </filter>
               </defs>
 
               {/* Main wax blob */}
               <path
                 d="M100 25C125 23 145 10 165 30C185 50 195 80 190 115C185 150 195 180 165 190C135 200 105 185 75 190C45 195 10 180 10 140C10 100 20 70 40 45C60 20 75 27 100 25Z"
-                fill="url(#waxGrad)"
-                filter="url(#waxFilter)"
+                fill={`url(#${gradId})`}
+                filter={`url(#${filterId})`}
               />
 
               {/* Subtle recessed circle */}
@@ -115,13 +111,12 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 textAnchor="middle"
                 dominantBaseline="middle"
                 alignmentBaseline="middle"
+                className="wax-script"
                 style={{
-                  fontFamily: "'Pinyon Script', 'Great Vibes', cursive",
                   fontSize: "72px",
                   fill: "#ffffff",
                   opacity: 0.95,
-                  filter:
-                    "drop-shadow(0px 1px 2px rgba(0,0,0,0.5))",
+                  filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.5))",
                 }}
               >
                 D
@@ -134,8 +129,8 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 textAnchor="middle"
                 dominantBaseline="middle"
                 alignmentBaseline="middle"
+                className="wax-script"
                 style={{
-                  fontFamily: "'Pinyon Script', cursive",
                   fontSize: "22px",
                   fill: "#ffffff",
                   opacity: 0.7,
@@ -151,13 +146,12 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 textAnchor="middle"
                 dominantBaseline="middle"
                 alignmentBaseline="middle"
+                className="wax-script"
                 style={{
-                  fontFamily: "'Pinyon Script', 'Great Vibes', cursive",
                   fontSize: "72px",
                   fill: "#ffffff",
                   opacity: 0.95,
-                  filter:
-                    "drop-shadow(0px 1px 2px rgba(0,0,0,0.5))",
+                  filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.5))",
                 }}
               >
                 K
