@@ -21,12 +21,12 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
   };
 
   return (
-    <div className="relative flex items-center justify-center w-64 h-64 select-none">
+    <div className="relative flex items-center justify-center w-80 h-80 select-none overflow-visible">
       <AnimatePresence>
         {!isBroken && (
           <motion.div
             key="seal"
-            className="relative cursor-pointer z-50"
+            className="relative cursor-pointer z-50 overflow-visible"
             initial={{ scale: 0, rotate: -8, opacity: 0 }}
             animate={{ scale: 1, rotate: 0, opacity: 1 }}
             exit={{ opacity: 0, scale: 0.6, transition: { duration: 0.3 } }}
@@ -40,10 +40,11 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
             }}
           >
             <svg
-              width="280"
-              height="280"
-              viewBox="0 0 250 250"
+              width="300"
+              height="300"
+              viewBox="0 0 300 300"
               overflow="visible"
+              style={{ overflow: "visible" }}
             >
               <defs>
                 {/* Royal Blue gradient with dynamic ID to prevent Safari cache bugs */}
@@ -55,10 +56,10 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 {/* Permanent Safari-safe filter (v3) */}
                 <filter
                   id={filterId}
-                  x="-25"
-                  y="-25"
-                  width="300"
-                  height="300"
+                  x="-50"
+                  y="-50"
+                  width="400"
+                  height="400"
                   filterUnits="userSpaceOnUse"
                   colorInterpolationFilters="sRGB"
                   filterRes="256"
@@ -76,7 +77,7 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                     lightingColor="#ffffff"
                     result="light"
                   >
-                    <fePointLight x="65" y="65" z="100" />
+                    <fePointLight x="90" y="90" z="100" />
                   </feSpecularLighting>
                   <feComposite
                     in="light"
@@ -94,7 +95,7 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 </filter>
               </defs>
 
-              <g transform="translate(25, 25)">
+              <g transform="translate(50, 50)">
                 {/* Main wax blob */}
                 <path
                   d="M100 25C125 23 145 10 165 30C185 50 195 80 190 115C185 150 195 180 165 190C135 200 105 185 75 190C45 195 10 180 10 140C10 100 20 70 40 45C60 20 75 27 100 25Z"
@@ -109,9 +110,8 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 <text
                   x="62"
                   y="100"
+                  dy="0.35em"
                   textAnchor="middle"
-                  dominantBaseline="middle"
-                  alignmentBaseline="middle"
                   className="wax-script"
                   style={{
                     fontSize: "72px",
@@ -126,9 +126,8 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 <text
                   x="100"
                   y="100"
+                  dy="0.35em"
                   textAnchor="middle"
-                  dominantBaseline="middle"
-                  alignmentBaseline="middle"
                   className="wax-script"
                   style={{
                     fontSize: "22px",
@@ -143,9 +142,8 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 <text
                   x="138"
                   y="100"
+                  dy="0.35em"
                   textAnchor="middle"
-                  dominantBaseline="middle"
-                  alignmentBaseline="middle"
                   className="wax-script"
                   style={{
                     fontSize: "72px",
