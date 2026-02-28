@@ -40,9 +40,9 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
             }}
           >
             <svg
-              width="240"
-              height="240"
-              viewBox="0 0 200 200"
+              width="280"
+              height="280"
+              viewBox="0 0 250 250"
               overflow="visible"
             >
               <defs>
@@ -55,8 +55,8 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 {/* Permanent Safari-safe filter (v3) */}
                 <filter
                   id={filterId}
-                  x="-50"
-                  y="-50"
+                  x="-25"
+                  y="-25"
                   width="300"
                   height="300"
                   filterUnits="userSpaceOnUse"
@@ -76,7 +76,7 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                     lightingColor="#ffffff"
                     result="light"
                   >
-                    <fePointLight x="40" y="40" z="100" />
+                    <fePointLight x="65" y="65" z="100" />
                   </feSpecularLighting>
                   <feComposite
                     in="light"
@@ -94,68 +94,68 @@ export default function WaxSeal({ onClick }: WaxSealProps) {
                 </filter>
               </defs>
 
-              {/* Main wax blob */}
-              <path
-                d="M100 25C125 23 145 10 165 30C185 50 195 80 190 115C185 150 195 180 165 190C135 200 105 185 75 190C45 195 10 180 10 140C10 100 20 70 40 45C60 20 75 27 100 25Z"
-                fill={`url(#${gradId})`}
-                filter={`url(#${filterId})`}
-              />
+              <g transform="translate(25, 25)">
+                {/* Main wax blob */}
+                <path
+                  d="M100 25C125 23 145 10 165 30C185 50 195 80 190 115C185 150 195 180 165 190C135 200 105 185 75 190C45 195 10 180 10 140C10 100 20 70 40 45C60 20 75 27 100 25Z"
+                  fill={`url(#${gradId})`}
+                  filter={`url(#${filterId})`}
+                />
 
-              {/* Subtle recessed circle */}
-              <circle cx="100" cy="100" r="58" fill="#000000" opacity="0.08" />
+                {/* Subtle recessed circle */}
+                <circle cx="100" cy="100" r="58" fill="#000000" opacity="0.08" />
 
-              {/* D */}
-              <text
-                x="62"
-                y="100"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                alignmentBaseline="middle"
-                className="wax-script"
-                style={{
-                  fontSize: "72px",
-                  fill: "#ffffff",
-                  opacity: 0.95,
-                  filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.5))",
-                }}
-              >
-                D
-              </text>
+                {/* D */}
+                <text
+                  x="62"
+                  y="100"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  alignmentBaseline="middle"
+                  className="wax-script"
+                  style={{
+                    fontSize: "72px",
+                    fill: "#ffffff",
+                    opacity: 0.95,
+                  }}
+                >
+                  D
+                </text>
 
-              {/* & */}
-              <text
-                x="100"
-                y="100"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                alignmentBaseline="middle"
-                className="wax-script"
-                style={{
-                  fontSize: "22px",
-                  fill: "#ffffff",
-                  opacity: 0.7,
-                }}
-              >
-                &
-              </text>
+                {/* & */}
+                <text
+                  x="100"
+                  y="100"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  alignmentBaseline="middle"
+                  className="wax-script"
+                  style={{
+                    fontSize: "22px",
+                    fill: "#ffffff",
+                    opacity: 0.7,
+                  }}
+                >
+                  &
+                </text>
 
-              {/* K */}
-              <text
-                x="138"
-                y="100"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                alignmentBaseline="middle"
-                className="wax-script"
-                style={{
-                  fontSize: "72px",
-                  fill: "#ffffff",
-                  opacity: 0.95,
-                  filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.5))",
-                }}
-              >
-                K
-              </text>
+                {/* K */}
+                <text
+                  x="138"
+                  y="100"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  alignmentBaseline="middle"
+                  className="wax-script"
+                  style={{
+                    fontSize: "72px",
+                    fill: "#ffffff",
+                    opacity: 0.95,
+                  }}
+                >
+                  K
+                </text>
+              </g>
             </svg>
           </motion.div>
         )}
